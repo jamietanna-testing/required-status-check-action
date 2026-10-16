@@ -1,0 +1,36 @@
+name: Typescript backend tests
+
+on:
+  push: {}
+
+jobs:
+  backend-ts-linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run the linter
+        run: |
+          # pretend that we're doing work
+          sleep 12
+
+  backend-ts-build:
+    runs-on: ubuntu-latest
+    needs:
+      - backend-ts-linter
+      - backend-ts-tests
+
+    steps:
+      - name: Build app
+        run: |
+          # pretend that we're doing work
+          sleep 2
+
+  backend-ts-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run the tests
+        run: |
+          # pretend that we're doing work
+          sleep 9
+

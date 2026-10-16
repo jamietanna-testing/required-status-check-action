@@ -1,0 +1,23 @@
+name: Backend tests
+
+on:
+  push: {}
+
+jobs:
+  backend-linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run the linter
+        run: |
+          # pretend that we're doing work
+          sleep 2
+
+  backend-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run the tests
+        run: |
+          # pretend that we're doing work
+          sleep 17
