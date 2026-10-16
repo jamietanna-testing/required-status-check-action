@@ -1,0 +1,15 @@
+name: Typescript backend tests (when no CI)
+
+on:
+  push:
+    paths-ignore:
+      - ts/backend/**
+
+jobs:
+  backend-ts-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build app
+        run: |
+          exit 0

@@ -1,7 +1,9 @@
 name: Typescript backend tests
 
 on:
-  push: {}
+  push:
+    paths:
+      - ts/backend/**
 
 jobs:
   backend-ts-linter:
