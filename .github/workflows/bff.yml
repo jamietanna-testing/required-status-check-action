@@ -2,8 +2,8 @@ name: Typescript backend tests
 
 on:
   push:
-    paths:
-      - ts/backend/**
+    paths-ignore:
+      - backend/**
 
 jobs:
   backend-ts-linter:
