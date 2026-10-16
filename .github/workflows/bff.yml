@@ -4,34 +4,7 @@ on:
   push: {}
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-          # to allow us to check all changes
-          fetch-depth: 0
-      - name: Determine whether relevant files changed
-        run: |
-          base="${{ github.event.pull_request.base.sha || github.event.before }}"
-
-          # if it's a new branch / if triggered i.e. through a `workflow_dispatch` (not used in this Workflow)
-          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ]; then
-            echo "needed=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          changed_files="$(git diff --name-only "$base" "${{ github.sha }}")"
-          if echo "$changed_files" | grep -qE '^ts/backend/'; then
-            echo "needed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "needed=false" >> "$GITHUB_OUTPUT"
-          fi
-
   backend-ts-linter:
-    needs: changes
-    if: needs.changes.outputs.needed == 'true'
     runs-on: ubuntu-latest
 
     steps:
@@ -53,8 +26,6 @@ jobs:
           sleep 2
 
   backend-ts-tests:
-    needs: changes
-    if: needs.changes.outputs.needed == 'true'
     runs-on: ubuntu-latest
 
     steps:
